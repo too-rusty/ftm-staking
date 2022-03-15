@@ -1,0 +1,79 @@
+const IStaking = artifacts.require("IStaking")
+
+
+const SFC_CONTRACT_ADDRESS = "0xfc00face00000000000000000000000000000000"
+
+const toWei = (amount) => { return web3.utils.toWei(amount, "ether")}
+const fromWei = (amount) => { return web3.utils.fromWei(amount, "ether")}
+
+module.exports = async (done) => {
+    const istaking = await IStaking.at(SFC_CONTRACT_ADDRESS)
+    const [owner] = await web3.eth.getAccounts()
+    console.log("owner", owner)
+    
+    try {
+    const txn = await istaking.claimRewards(1)
+    console.log('txn', txn)
+    console.log(`txn: ${JSON.stringify(txn)}`)
+    } catch (e) {
+    console.log(e.message)
+    }
+
+    done()
+}
+
+
+/*
+Wasnt working initially , error: 
+execution reverted: zero rewards
+
+worked after some time ....
+
+txn {
+  tx: '0xddf70e81cea041456b6b8a0448d7df4b4a022cc3ec51e69cd63a8c91c88362a2',
+  receipt: {
+    blockHash: '0x00001f3500003946d7d4f7edad18a16a3ca125a4f6af39d021a9ef8e825effe3',
+    blockNumber: 8286171,
+    contractAddress: null,
+    cumulativeGasUsed: 810412,
+    effectiveGasPrice: '0x2e91c67cc0',
+    from: '0x405b3ca1047c933f8d0714009bfa43b5f1da6376',
+    gasUsed: 810412,
+    logs: [],
+    logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000040008000000400000000000000000000000000000000000040000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000002000040000000000000000000000000000000000000000000000000000000000200000000',
+    status: true,
+    to: '0xfc00face00000000000000000000000000000000',
+    transactionHash: '0xddf70e81cea041456b6b8a0448d7df4b4a022cc3ec51e69cd63a8c91c88362a2',
+    transactionIndex: 0,
+    type: '0x0',
+    rawLogs: [ [Object] ]
+  },
+  logs: []
+}
+txn: {"tx":"0xddf70e81cea041456b6b8a0448d7df4b4a022cc3ec51e69cd63a8c91c88362a2","receipt":{"blockHash":"0x00001f3500003946d7d4f7edad18a16a3ca125a4f6af39d021a9ef8e825effe3","blockNumber":8286171,"contractAddress":null,"cumulativeGasUsed":810412,"effectiveGasPrice":"0x2e91c67cc0","from":"0x405b3ca1047c933f8d0714009bfa43b5f1da6376","gasUsed":810412,"logs":[],"logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000040008000000400000000000000000000000000000000000040000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000002000040000000000000000000000000000000000000000000000000000000000200000000","status":true,"to":"0xfc00face00000000000000000000000000000000","transactionHash":"0xddf70e81cea041456b6b8a0448d7df4b4a022cc3ec51e69cd63a8c91c88362a2","transactionIndex":0,"type":"0x0","rawLogs":[{"address":"0xFC00FACE00000000000000000000000000000000","topics":["0xc1d8eb6e444b89fb8ff0991c19311c070df704ccb009e210d1462d5b2410bf45","0x000000000000000000000000405b3ca1047c933f8d0714009bfa43b5f1da6376","0x0000000000000000000000000000000000000000000000000000000000000001"],"data":"0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011371f8fd54c8","blockNumber":8286171,"transactionHash":"0xddf70e81cea041456b6b8a0448d7df4b4a022cc3ec51e69cd63a8c91c88362a2","transactionIndex":0,"blockHash":"0x00001f3500003946d7d4f7edad18a16a3ca125a4f6af39d021a9ef8e825effe3","logIndex":0,"removed":false,"id":"log_ea3593a5"}]},"logs":[]}
+
+so sometimes works and sometimes now , when there are tokens ready to be claimed then works else not ....
+
+
+
+
+
+
+
+createDelegationTx,                     -> DONE
+increaseDelegationTx,                   -> DONE , same as above
+claimDelegationRewardsTx, ->
+claimDelegationRewardsCompoundTx,
+claimValidatorRewardsTx,
+prepareToWithdrawDelegationPartTx,
+prepareToWithdrawDelegationTx,
+withdrawDelegationTx,
+withdrawPartTx,
+lockupDelegationTx,
+relockDelegationTx,
+unlockDelegationTx,
+unstashRewardsTx,
+sfcTokenizeLockedStake,
+sfcRedeemTokenizedStake
+
+*/
