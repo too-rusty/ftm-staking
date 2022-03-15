@@ -18,3 +18,10 @@ this is not the Locked stake , need to check how its different from unlocked sta
 adds the reward to unlocked stake
 so unlockedStake should go up ....
 and sure it does ......
+
+
+#### Undelegate
+requires a unique wrID that is used to claim delegations at a later point of time
+
+#### WithdrawRewards
+withdraw with that key, need to try after a week because withdrawal time is 1 week afaik
