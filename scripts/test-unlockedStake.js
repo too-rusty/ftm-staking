@@ -29,4 +29,9 @@ shouldn't it be in locked state ....
 there is a function to lockStake , what is that .... how does it work
     and there is another function that is to query for info ...
 
+Answer:
+stake your tokens on a validtor and you will earn base 4% APY
+you can also lock up your tokens for a 14% APY, min lock period is 2 weeks
+and max is maybe 365 days
+
 */
