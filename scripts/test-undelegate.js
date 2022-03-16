@@ -12,7 +12,7 @@ module.exports = async (done) => {
     console.log("owner", owner)
     
     try {
-    const txn = await istaking.undelegate(1, 1, 2)
+    const txn = await istaking.undelegate(1, 2, 2)
     console.log('txn', txn)
     console.log(`txn: ${JSON.stringify(txn)}`)
     } catch (e) {
