@@ -27,6 +27,9 @@ module.exports = async (done) => {
     })
     console.log('pending reward: ', fromWei(txn))
     console.log(`txn: ${JSON.stringify(txn)}`)
+    
+    const getStake = await istaking.getStake(owner, 1)
+    console.log('staked tokens', fromWei(getStake))
     } catch (e) {
     console.log(e.message)
     }

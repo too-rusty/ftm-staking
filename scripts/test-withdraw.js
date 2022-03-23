@@ -14,7 +14,7 @@ module.exports = async (done) => {
     try {
     const balanceBefore = await web3.eth.getBalance(owner)
     console.log(`balanceBefore: ${fromWei(balanceBefore)}\n`)
-    const txn = await istaking.withdraw(1, 1)
+    const txn = await istaking.withdraw(1, 3)
     const balanceAfter = await web3.eth.getBalance(owner)
     console.log(`balanceBefore: ${fromWei(balanceBefore)}\nbalanceAfter: ${fromWei(balanceAfter)}\n`)
     console.log('txn', txn)
