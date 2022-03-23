@@ -22,6 +22,8 @@ and sure it does ......
 
 #### UndelegateFTM
 requires a unique wrID that is used to claim delegations at a later point of time
+Note that the undelegated amount doesnt change, i guess it will reduce once we withdraw
+After firing this command , the number of FTM tokens from the staked amount reduces
 
 #### WithdrawFTM
 withdraw with that key, need to try after a week because withdrawal time is 1 week afaik
